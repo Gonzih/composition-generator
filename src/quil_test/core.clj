@@ -1,5 +1,6 @@
 (ns quil-test.core
   (:use quil.core)
+  (:use [seesaw.core :only [native!]])
   (:use seesaw.chooser))
 
 (def file-to-save (atom false))
@@ -92,6 +93,7 @@
              height)))
 
 (defn setup []
+  (native!)
   (draw-circles))
 
 (defn draw []
