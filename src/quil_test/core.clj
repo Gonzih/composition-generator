@@ -38,8 +38,8 @@
   (fill 50 50)
   (draw-circle-three))
 
-(defn draw-circle-one []
-  (let [size-fn (size-generator 0.5 0.7)
+(defn draw-circle-at-any-canvas-coords [min-s max-s]
+  (let [size-fn (size-generator min-s max-s)
         width   (size-fn 0)
         height  (size-fn 1)
         x (random (canvas-size 0))
@@ -49,16 +49,11 @@
              width
              height)))
 
+(defn draw-circle-one []
+  (draw-circle-at-any-canvas-coords 0.5 0.7))
+
 (defn draw-circle-two []
-  (let [size-fn (size-generator 0.1 0.3)
-        width   (size-fn 0)
-        height  (size-fn 1)
-        x (random (canvas-size 0))
-        y (random (canvas-size 1))]
-    (ellipse x
-             y
-             width
-             height)))
+  (draw-circle-at-any-canvas-coords 0.1 0.3))
 
 (defn draw-circle-three []
   (let [size-fn (size-generator 0.03 0.07)
