@@ -1,6 +1,8 @@
 (ns quil-test.core
-  (:use quil.core))
+  (:use quil.core)
+  (:use seesaw.chooser))
 
+(def file-to-save (atom false))
 
 (def original-size [105 148])
 
@@ -11,6 +13,17 @@
 
 (def canvas-size (calculate-canvas-size))
 
+(defn save-to-file []
+  (future (choose-file :filters [["Images" ["tiff" "targa" "png" "jpeg" "jpg"]]]
+                       :type :save
+                       :success-fn (fn [fc file] (reset! file-to-save (.getAbsolutePath file)))
+                       :cancel-fn  (fn [fc file] (reset! file-to-save false)))))
+
+(defn try-save-to-file []
+  (when @file-to-save
+    (save @file-to-save)
+    (reset! file-to-save false)))
+
 (declare draw-circles
          draw-circle-one
          draw-circle-two
@@ -20,6 +33,7 @@
   (let [pressed-key (raw-key)]
     (case pressed-key
       \space (draw-circles)
+      \s     (save-to-file)
       "default")))
 
 (defn size-generator [min-s max-s]
@@ -28,14 +42,14 @@
             (* (* max-s 2) (canvas-size index)))))
 
 (defn draw-circles []
-  (background 255)
+  (background 200)
   (smooth)
   (stroke-weight 0)
-  (fill 150 50)
+  (fill 0)
   (draw-circle-one)
-  (fill 75 50)
+  (fill 100)
   (draw-circle-two)
-  (fill 50 50)
+  (fill 255)
   (draw-circle-three))
 
 (defn draw-circle-at-any-canvas-coords [min-s max-s]
@@ -80,9 +94,13 @@
 (defn setup []
   (draw-circles))
 
+(defn draw []
+  (try-save-to-file))
+
 (defsketch composition
   :title "Composition"
   :setup setup
+  :draw draw
   :key-pressed key-pressed
   :size (calculate-canvas-size)
   :canvas-size canvas-size)
