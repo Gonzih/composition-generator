@@ -1,7 +1,8 @@
 (ns quil-test.core
-  (:use quil.core)
-  (:use [seesaw.core :only [native!]])
-  (:use seesaw.chooser))
+  (:require [quil.core :refer :all]
+            [seesaw.chooser :refer [choose-file]]
+            [seesaw.core :refer [native!]])
+  (:gen-class))
 
 (def file-to-save (atom false))
 
