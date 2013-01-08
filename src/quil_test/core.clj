@@ -1,5 +1,6 @@
 (ns quil-test.core
   (:require [quil.core :refer :all]
+            [quil.applet :refer [applet-exit current-applet]]
             [seesaw.chooser :refer [choose-file]]
             [seesaw.core :refer [native!]])
   (:gen-class))
@@ -36,6 +37,7 @@
     (case pressed-key
       \space (draw-circles)
       \s     (save-to-file)
+      \q     (applet-exit (current-applet))
       "default")))
 
 (defn size-generator [min-s max-s]
