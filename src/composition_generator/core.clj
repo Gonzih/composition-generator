@@ -1,4 +1,4 @@
-(ns quil-test.core
+(ns composition-generator.core
   (:require [quil.core      :refer :all]
             [quil.applet    :refer [applet-exit current-applet]]
             [seesaw.chooser :refer [choose-file]]
@@ -102,8 +102,8 @@
 (defn draw []
   (try-save-to-file))
 
-(defsketch composition
-  :title "Composition"
+(defsketch composition-generator
+  :title "Composition Generator"
   :setup setup
   :draw draw
   :key-pressed key-pressed

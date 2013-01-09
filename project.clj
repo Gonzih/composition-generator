@@ -1,4 +1,4 @@
-(defproject quil-test "0.1.0-SNAPSHOT"
+(defproject composition-generator "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -6,4 +6,4 @@
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [quil "1.6.0"]
                  [seesaw "1.4.2"]]
-  :main quil-test.core)
+  :main composition-generator.core)
