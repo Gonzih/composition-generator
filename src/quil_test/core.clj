@@ -1,8 +1,8 @@
 (ns quil-test.core
-  (:require [quil.core :refer :all]
-            [quil.applet :refer [applet-exit current-applet]]
+  (:require [quil.core      :refer :all]
+            [quil.applet    :refer [applet-exit current-applet]]
             [seesaw.chooser :refer [choose-file]]
-            [seesaw.core :refer [native!]])
+            [seesaw.core    :refer [native!]])
   (:gen-class))
 
 (def file-to-save (atom false))
